@@ -39,6 +39,12 @@ def run_json(args: list[str]) -> dict[str, Any]:
     return payload
 
 
+def run_cli(args: list[str]) -> None:
+    result = subprocess.run([herdr_bin(), *args], text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode != 0:
+        raise SystemExit(result.stderr or result.stdout or f"herdr {' '.join(args)} failed")
+
+
 def response_path(payload: dict[str, Any], *path: str) -> Any:
     cursor: Any = payload
     for part in path:
@@ -111,8 +117,8 @@ def open_target(mode: str, target: str) -> None:
             raise SystemExit("missing focused Herdr pane id")
         payload = run_json(["pane", "split", pane_id, "--direction", "right", "--cwd", cwd, "--focus"])
         hunk_pane = response_path(payload, "result", "pane", "pane_id")
-    run_json(["pane", "rename", hunk_pane, "hunk"])
-    run_json(["pane", "run", hunk_pane, shell_command(cwd, mode)])
+    run_cli(["pane", "rename", hunk_pane, "hunk"])
+    run_cli(["pane", "run", hunk_pane, shell_command(cwd, mode)])
 
 
 def parse_args(argv: list[str]) -> tuple[str, str]:
