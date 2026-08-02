@@ -16,6 +16,8 @@ herdr plugin install edmundmiller/herdr-plugin-hunk
 - `hunk.diff.staged-tab`
 - `hunk.diff.branch-split`
 - `hunk.diff.branch-tab`
+- `hunk.diff.commit-split`
+- `hunk.diff.commit-tab`
 
 ## Requirements
 

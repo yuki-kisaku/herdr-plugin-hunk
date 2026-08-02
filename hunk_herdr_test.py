@@ -25,6 +25,10 @@ class HunkHerdrTest(unittest.TestCase):
         with patch("shutil.which", return_value=None), patch.dict(os.environ, {}, clear=True):
             self.assertEqual(hunk_herdr.shell_command("/repo", "staged"), "bunx hunkdiff diff --staged --no-transparent-bg")
 
+    def test_commit_command_uses_hunk_show(self) -> None:
+        with patch("shutil.which", return_value="/usr/bin/hunk"), patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(hunk_herdr.shell_command("/repo", "commit"), "hunk show --no-transparent-bg")
+
     def test_theme_env_is_passed_to_hunk(self) -> None:
         with patch("shutil.which", return_value="/usr/bin/hunk"), patch.dict(os.environ, {"HUNK_THEME": "catppuccin-mocha"}):
             self.assertEqual(

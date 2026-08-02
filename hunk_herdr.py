@@ -11,7 +11,7 @@ import sys
 from typing import Any
 
 
-VALID_MODES = {"worktree", "staged", "branch"}
+VALID_MODES = {"worktree", "staged", "branch", "commit"}
 VALID_TARGETS = {"split", "tab"}
 
 
@@ -82,7 +82,9 @@ def theme_args() -> list[str]:
 
 
 def hunk_args(cwd: str, mode: str) -> list[str]:
-    if mode == "staged":
+    if mode == "commit":
+        args = ["show"]
+    elif mode == "staged":
         args = ["diff", "--staged"]
     elif mode == "branch":
         branch = git_output(cwd, ["branch", "--show-current"]) or "HEAD"

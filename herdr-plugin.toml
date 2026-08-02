@@ -40,3 +40,15 @@ id = "branch-tab"
 title = "Hunk branch diff in tab"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "branch", "tab"]
+
+[[actions]]
+id = "commit-split"
+title = "Hunk last commit in split"
+contexts = ["pane", "workspace"]
+command = ["python", "hunk_herdr.py", "commit", "split"]
+
+[[actions]]
+id = "commit-tab"
+title = "Hunk last commit in tab"
+contexts = ["pane", "workspace"]
+command = ["python", "hunk_herdr.py", "commit", "tab"]
