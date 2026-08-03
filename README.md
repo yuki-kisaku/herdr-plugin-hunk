@@ -19,10 +19,14 @@ herdr plugin install edmundmiller/herdr-plugin-hunk
 - `hunk.diff.commit-split`
 - `hunk.diff.commit-tab`
 
+On Windows the action ids carry a `-windows` suffix (for example
+`hunk.diff.commit-split-windows`), because Herdr rejects duplicate action ids
+across platforms. Bind those ids in the Windows config.
+
 ## Requirements
 
 - Herdr `0.7.0` or newer
-- `python3`
+- `python3` (Linux/macOS) or `python` (Windows)
 - `hunk` or `bunx hunkdiff`
 
 ## Theme

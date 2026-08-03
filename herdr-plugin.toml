@@ -1,54 +1,122 @@
 id = "hunk.diff"
 name = "Hunk Diff"
-version = "0.1.0"
+version = "0.2.0"
 min_herdr_version = "0.7.0"
 description = "Open Hunk diffs from Herdr in a split pane or tab."
-platforms = ["windows"]
+platforms = ["windows", "linux", "macos"]
+
+# herdr はアクション id の重複を OS に関係なく拒否するため、同じ動作でも
+# Unix 系（python3）と Windows（python）で別々の id を持たせている。
+# Windows の python3 はシェルスクリプトのラッパーで CreateProcessW から起動できない。
 
 [[actions]]
 id = "worktree-split"
+platforms = ["linux", "macos"]
+title = "Hunk worktree diff in split"
+contexts = ["pane", "workspace"]
+command = ["python3", "hunk_herdr.py", "worktree", "split"]
+
+[[actions]]
+id = "worktree-split-windows"
+platforms = ["windows"]
 title = "Hunk worktree diff in split"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "worktree", "split"]
 
 [[actions]]
 id = "worktree-tab"
+platforms = ["linux", "macos"]
+title = "Hunk worktree diff in tab"
+contexts = ["pane", "workspace"]
+command = ["python3", "hunk_herdr.py", "worktree", "tab"]
+
+[[actions]]
+id = "worktree-tab-windows"
+platforms = ["windows"]
 title = "Hunk worktree diff in tab"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "worktree", "tab"]
 
 [[actions]]
 id = "staged-split"
+platforms = ["linux", "macos"]
+title = "Hunk staged diff in split"
+contexts = ["pane", "workspace"]
+command = ["python3", "hunk_herdr.py", "staged", "split"]
+
+[[actions]]
+id = "staged-split-windows"
+platforms = ["windows"]
 title = "Hunk staged diff in split"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "staged", "split"]
 
 [[actions]]
 id = "staged-tab"
+platforms = ["linux", "macos"]
+title = "Hunk staged diff in tab"
+contexts = ["pane", "workspace"]
+command = ["python3", "hunk_herdr.py", "staged", "tab"]
+
+[[actions]]
+id = "staged-tab-windows"
+platforms = ["windows"]
 title = "Hunk staged diff in tab"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "staged", "tab"]
 
 [[actions]]
 id = "branch-split"
+platforms = ["linux", "macos"]
+title = "Hunk branch diff in split"
+contexts = ["pane", "workspace"]
+command = ["python3", "hunk_herdr.py", "branch", "split"]
+
+[[actions]]
+id = "branch-split-windows"
+platforms = ["windows"]
 title = "Hunk branch diff in split"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "branch", "split"]
 
 [[actions]]
 id = "branch-tab"
+platforms = ["linux", "macos"]
+title = "Hunk branch diff in tab"
+contexts = ["pane", "workspace"]
+command = ["python3", "hunk_herdr.py", "branch", "tab"]
+
+[[actions]]
+id = "branch-tab-windows"
+platforms = ["windows"]
 title = "Hunk branch diff in tab"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "branch", "tab"]
 
 [[actions]]
 id = "commit-split"
+platforms = ["linux", "macos"]
+title = "Hunk last commit in split"
+contexts = ["pane", "workspace"]
+command = ["python3", "hunk_herdr.py", "commit", "split"]
+
+[[actions]]
+id = "commit-split-windows"
+platforms = ["windows"]
 title = "Hunk last commit in split"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "commit", "split"]
 
 [[actions]]
 id = "commit-tab"
+platforms = ["linux", "macos"]
+title = "Hunk last commit in tab"
+contexts = ["pane", "workspace"]
+command = ["python3", "hunk_herdr.py", "commit", "tab"]
+
+[[actions]]
+id = "commit-tab-windows"
+platforms = ["windows"]
 title = "Hunk last commit in tab"
 contexts = ["pane", "workspace"]
 command = ["python", "hunk_herdr.py", "commit", "tab"]
